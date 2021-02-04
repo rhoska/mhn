@@ -9,6 +9,9 @@ from mhn.api import APIModel
 from mhn.auth.models import User
 from mhn.common.clio import Clio
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class Sensor(db.Model, APIModel):
 
@@ -127,7 +130,7 @@ class Rule(db.Model, APIModel):
         for r in refs:
             ref = Reference()
             ref.rule = self
-            ref.text = r
+            ref.text = r.decode('utf-8')
             db.session.add(ref)
         db.session.commit()
 
